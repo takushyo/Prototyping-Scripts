@@ -3,12 +3,12 @@ using System.Diagnostics;
 
 namespace TakuLib.StateMachine {
 	public class StateMachine<T> {
-		
+
 		public State<T> currentState { get; private set; }
 		public T Owner;
 		public StateMachine(T _owner) {
 			Owner = _owner;
-			
+
 			currentState = null;
 		}
 
@@ -31,10 +31,9 @@ namespace TakuLib.StateMachine {
 	}
 
 	[Serializable]
-	public abstract class State<T>
-	{
+	public abstract class State<T> {
 		protected string stateName;
-		public virtual State<T> createInstance() {return null; }
+		public virtual State<T> createInstance() { return null; }
 		public virtual string GetStateName() => this.GetType().Name;
 		public abstract void EnterState(T _owner);
 		public abstract void ExitState(T _owner);
