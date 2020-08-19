@@ -34,10 +34,8 @@ namespace TakuLib.StateMachine {
 	[Serializable]
 	public abstract class State<T>
 	{
-		
 		protected string stateName;
-		public virtual State<T> createInstance() { Debug.WriteLine("diddnt work"); return null; }
-		public virtual string GetFlavourText() { return "STATE FLAVOUR NOT SET!"; }
+		public virtual State<T> createInstance() {return null; }
 		public virtual string GetStateName() => this.GetType().Name;
 		public abstract void EnterState(T _owner);
 		public abstract void ExitState(T _owner);
