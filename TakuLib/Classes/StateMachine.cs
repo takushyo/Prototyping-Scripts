@@ -8,7 +8,6 @@ namespace TakuLib.StateMachine {
 		public T Owner;
 		public StateMachine(T _owner) {
 			Owner = _owner;
-
 			currentState = null;
 		}
 
