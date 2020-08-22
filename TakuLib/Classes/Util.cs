@@ -90,15 +90,23 @@ namespace TakuLib {
         /// USAGE:
         /// Dictionary<string, Type> ItemTypes = GetDictOfSubTypes<Item>(null);
         /// Item item = ItemTypes["Tomato"] as Item;
+        /// 
+        /// 
+        /// UPDATE
+        /// Forgot you actually can have a dictionary have a generic value :))))
+        /// 
+        /// USAGE:
+        /// Dictionary<string, Item> itemTypes = GetDictOfSubTypes<Item>(null);
+        /// Item item = ItemTypes["Tomato"];
         /// </summary>
 
-        public static Dictionary<string, Type> GetDictOfSubTypes<T>(params object[] args) where T : class {
-            var dict = new Dictionary<string, Type>();
+        public static Dictionary<string, T> GetDictOfSubTypes<T>(params object[] args) where T : class {
+            var dict = new Dictionary<string, T>();
             foreach (Type type in
                 Assembly.GetAssembly(typeof(T)).GetTypes()
                 .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(T)))) {
                 var obj = (T)Activator.CreateInstance(type, args);
-                dict.Add(obj.GetType().Name, obj.GetType());
+                dict.Add(obj.GetType().Name, obj);
             }
             return dict;
         }
